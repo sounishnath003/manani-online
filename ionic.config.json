@@ -1,0 +1,7 @@
+{
+  "name": "Manani Online",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
