@@ -8,6 +8,7 @@ import { HomePageRoutingModule } from './home-routing.module';
 import { MessageComponentModule } from '../message/message.module';
 import { DataService } from '../services/data.service';
 import { HttpClientModule } from '@angular/common/http';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 @NgModule({
   imports: [
@@ -17,6 +18,7 @@ import { HttpClientModule } from '@angular/common/http';
     MessageComponentModule,
     HomePageRoutingModule,
     HttpClientModule,
+    Ng2SearchPipeModule
   ],
   providers: [DataService],
   declarations: [HomePage],
