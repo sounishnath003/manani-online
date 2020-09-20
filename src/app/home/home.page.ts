@@ -1,5 +1,10 @@
 import { Component } from '@angular/core';
-import { DataService, Message } from '../services/data.service';
+import { Router } from '@angular/router';
+import { DataService, Product } from '../services/data.service';
+
+export interface DataServe {
+  products: Product[];
+}
 
 @Component({
   selector: 'app-home',
@@ -7,16 +12,30 @@ import { DataService, Message } from '../services/data.service';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-  constructor(private data: DataService) {}
-
-  refresh(ev) {
-    setTimeout(() => {
-      ev.detail.complete();
-    }, 3000);
+  data: DataServe = null;
+  products: Product[];
+  // tslint:disable-next-line: variable-name
+  constructor(private _dataservice: DataService, private router: Router) {
+    this.getProducts();
   }
 
-  getMessages(): Message[] {
-    return this.data.getMessages();
+  refresh(ev) {
+      console.log('Begin async operation');
+      setTimeout(() => {
+      console.log('Async operation has ended');
+      ev.target.complete();
+    }, 2000);
+  }
+
+  private getProducts() {
+    this._dataservice.getProducts().subscribe((produtss) => {
+      this.data = produtss;
+      this.products = this.data.products;
+    });
+  }
+
+  public goNewProduct() {
+      this.router.navigateByUrl('/new-product') ;
   }
 
 }

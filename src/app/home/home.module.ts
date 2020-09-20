@@ -6,6 +6,9 @@ import { FormsModule } from '@angular/forms';
 import { HomePage } from './home.page';
 import { HomePageRoutingModule } from './home-routing.module';
 import { MessageComponentModule } from '../message/message.module';
+import { DataService } from '../services/data.service';
+import { HttpClientModule } from '@angular/common/http';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 @NgModule({
   imports: [
@@ -13,8 +16,11 @@ import { MessageComponentModule } from '../message/message.module';
     FormsModule,
     IonicModule,
     MessageComponentModule,
-    HomePageRoutingModule
+    HomePageRoutingModule,
+    HttpClientModule,
+    Ng2SearchPipeModule
   ],
-  declarations: [HomePage]
+  providers: [DataService],
+  declarations: [HomePage],
 })
 export class HomePageModule {}

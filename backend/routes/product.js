@@ -3,15 +3,19 @@ const router = express.Router();
 const db = require("../database");
 const Product = require("../models/Product");
 
+// getting all products
 router.get("/", (req, res) => {
   Product.findAll()
     .then((products) => {
       console.log(products);
+      res.send({
+        products: products.sort((a, b) => b.createdAt - a.createdAt)
+      });
     })
     .catch((err) => console.log(err));
-  res.send("all products");
 });
 
+// post a new product
 router.get("/add-product", (req, res) => {
   const data = {
     name: "Leelen Saree",
@@ -43,10 +47,46 @@ router.get("/add-product", (req, res) => {
   })
     .then((product) => {
       console.log("product succesfully inserted into db");
-      console.log(data);
-      res.redirect('/products') ;
+      console.log(product);
+      res.redirect("/products");
     })
     .catch((err) => console.error("Product not inserted: " + err));
+});
+
+// get the specific product
+router.get("/find/:id", (req, res) => {
+  Product.findByPk(req.params.id)
+    .then((product) => {
+      console.log(product);
+      res.send({
+        requestedId: req.params.id,
+        product: product,
+        status: 200,
+      });
+    })
+    .catch((err) => {
+      console.log("product not found in db: " + err);
+      req.sendStatus(500);
+    });
+});
+
+// delete product
+router.get("/delete/:id", (req, res) => {
+  Product.destroy({
+    where: {
+      id: req.params.id,
+    },
+  })
+    .then((status) => {
+      console.log("succesfully deleted from db: " + status);
+      res.redirect("/products");
+    })
+    .catch((err) => {
+      res.send({
+        err: err,
+      });
+      console.error(err);
+    });
 });
 
 module.exports = router;

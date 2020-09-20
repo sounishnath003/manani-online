@@ -4,15 +4,17 @@
       <ion-back-button></ion-back-button>
     </ion-buttons>
     <ion-title>Manani Online Tracker</ion-title>
-    <ion-searchbar
-      placeholder="Filter Schedules"
-      showCancelButton="focus"
-      animated
-    ></ion-searchbar>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
+  <ion-searchbar
+    [(ngModel)]="term"
+    placeholder="Filter Schedules"
+    showCancelButton="focus"
+    animated
+  ></ion-searchbar>
+
   <ion-refresher slot="fixed" (ionRefresh)="refresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
@@ -25,8 +27,19 @@
 
   <ion-list>
     <app-message
-      *ngFor="let message of getMessages()"
-      [message]="message"
+      *ngFor="let product of products | filter: term"
+      [product]="product"
     ></app-message>
   </ion-list>
+
+  <ion-fab
+    (click)="goNewProduct()"
+    vertical="bottom"
+    horizontal="end"
+    slot="fixed"
+  >
+    <ion-fab-button>
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>
