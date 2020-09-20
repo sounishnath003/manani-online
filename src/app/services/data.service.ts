@@ -1,7 +1,7 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { environment } from '../../environments/environment';
-import { Observable } from 'rxjs';
+import { Injectable } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
+import { environment } from "../../environments/environment";
+import { Observable } from "rxjs";
 
 export interface DataServe {
   products: Product[];
@@ -46,5 +46,9 @@ export class DataService {
     this.http
       .get(environment.API_URL + `/add-product/${productData}`)
       .subscribe((res) => console.log(res));
+  }
+
+  public deleteProductById(id: number) {
+    this.http.get(environment.API_URL + `/delete/${id}`).subscribe((res) => {});
   }
 }

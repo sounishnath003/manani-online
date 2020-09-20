@@ -20,7 +20,7 @@ export class HomePage implements OnInit {
   }
 
   ngOnInit(): void {
-    this.reloadPage() ;
+    // this.reloadPage() ;
   }
 
   refresh(ev) {
