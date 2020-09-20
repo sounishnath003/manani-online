@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { DataService, Message } from '../services/data.service';
+import { DataService, Product } from '../services/data.service';
 
 @Component({
   selector: 'app-home',
@@ -7,7 +7,10 @@ import { DataService, Message } from '../services/data.service';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-  constructor(private data: DataService) {}
+  products: Product[] = null ;
+  constructor(private _dataservice: DataService) {
+    this.getProducts() ;
+   }
 
   refresh(ev) {
     setTimeout(() => {
@@ -15,8 +18,12 @@ export class HomePage {
     }, 3000);
   }
 
-  getMessages(): Message[] {
-    return this.data.getMessages();
+  private getProducts(): void {
+    // this._dataservice.getProducts().subscribe(produtss => {
+    //   this.products = produtss;
+    // });
+    // console.log(this.products);
   }
+
 
 }

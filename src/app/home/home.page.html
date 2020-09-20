@@ -23,10 +23,12 @@
     </ion-toolbar>
   </ion-header>
 
+  {{ products | json }}
+
   <ion-list>
     <app-message
-      *ngFor="let message of getMessages()"
-      [message]="message"
+      *ngFor="let product of products"
+      [product]="product"
     ></app-message>
   </ion-list>
 </ion-content>

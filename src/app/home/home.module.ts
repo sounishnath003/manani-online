@@ -6,15 +6,19 @@ import { FormsModule } from '@angular/forms';
 import { HomePage } from './home.page';
 import { HomePageRoutingModule } from './home-routing.module';
 import { MessageComponentModule } from '../message/message.module';
+import { DataService } from '../services/data.service';
+import { HttpClient } from '@angular/common/http';
 
 @NgModule({
   imports: [
+    HttpClient,
     CommonModule,
     FormsModule,
     IonicModule,
     MessageComponentModule,
     HomePageRoutingModule
   ],
+  providers: [DataService],
   declarations: [HomePage]
 })
 export class HomePageModule {}
