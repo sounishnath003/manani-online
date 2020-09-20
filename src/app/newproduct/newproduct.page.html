@@ -1,9 +1,63 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>newproduct</ion-title>
+    <ion-buttons>
+      <ion-back-button [text]="Home" defaultHref="/"></ion-back-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content fullscreen>
+  <ion-list-header lines="full">
+    <ion-label> Add a new product </ion-label>
+  </ion-list-header>
+  <ion-list lines="full" class="ion-no-margin">
+    <ion-item>
+      <ion-label position="floating">Product Name </ion-label>
+      <ion-input color="tertiary" autofocus enterkeyhint="next"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Customer Name</ion-label>
+      <ion-input type="name" enterkeyhint="next"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Wholeseller</ion-label>
+      <ion-input enterkeyhint="next"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Cost Price</ion-label>
+      <ion-input
+        type="number"
+        inputmode="numeric"
+        enterkeyhint="next"
+      ></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Selling Price</ion-label>
+      <ion-input
+        type="number"
+        inputmode="numeric"
+        enterkeyhint="next"
+      ></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Address</ion-label>
+      <ion-input
+        type="street-address"
+        inputmode="text"
+        enterkeyhint="next"
+      ></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Contact</ion-label>
+      <ion-input type="tel" inputmode="tel" enterkeyhint="next"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Image</ion-label>
+      <ion-input type="photo" enterkeyhint="done"></ion-input>
+    </ion-item>
+  </ion-list>
 
+  <div style="margin: 8px;" >
+    <ion-button expand="block"> <ion-icon name="checkmark-done-outline"></ion-icon> Submit</ion-button>
+  </div>
 </ion-content>

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 import { DataService, Product } from '../services/data.service';
 
 export interface DataServe {
@@ -15,14 +15,11 @@ export class HomePage {
   data: DataServe = null;
   products: Product[];
   // tslint:disable-next-line: variable-name
-  constructor(private _dataservice: DataService) {
+  constructor(private _dataservice: DataService, private router: Router) {
     this.getProducts();
   }
 
   refresh(ev) {
-    // setTimeout(() => {
-    //   ev.detail.complete();
-    // }, 3000);
       console.log('Begin async operation');
       setTimeout(() => {
       console.log('Async operation has ended');
@@ -36,4 +33,9 @@ export class HomePage {
       this.products = this.data.products;
     });
   }
+
+  public goNewProduct() {
+      this.router.navigateByUrl('/new-product') ;
+  }
+
 }
