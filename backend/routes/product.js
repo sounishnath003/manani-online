@@ -16,9 +16,9 @@ router.get("/", (req, res) => {
 });
 
 // post a new product
-router.post("/add-product", (req, res) => {
+router.get("/add-product/:product", (req, res) => {
   const data = {
-    name: "Silk Saree Handoom Craft",
+    name: "Bhagalpuram Silk",
     custName: "Annesha Harh",
     wholesaler: "Rangoli",
     costprice: 4599,
@@ -35,7 +35,7 @@ router.post("/add-product", (req, res) => {
     sellingPrice,
     address,
     photo
-  } = req.body;
+  } = data ;
   //   insert into db
   Product.create({
     name,

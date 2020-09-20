@@ -31,7 +31,6 @@ export interface Product {
   providedIn: "root",
 })
 export class DataService {
-  public product: Product;
   constructor(private http: HttpClient) {}
 
   public getProducts(): Observable<DataServe> {
@@ -43,8 +42,9 @@ export class DataService {
   }
 
   public insertNewProduct(productData: Product) {
-    console.log(productData);
-    this.http.post(environment.API_URL + '/add-product', productData);
+    console.log(environment.API_URL + `/add-product/${productData}`);
+    this.http
+      .get(environment.API_URL + `/add-product/${productData}`)
+      .subscribe((res) => console.log(res));
   }
-
 }
