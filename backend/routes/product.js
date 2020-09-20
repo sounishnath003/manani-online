@@ -9,9 +9,7 @@ router.get("/", (req, res) => {
     .then((products) => {
       console.log(products);
       res.send({
-        products: products.sort((a, b) => b.createdAt - a.createdAt),
-        comment: "all products are listed",
-        status: 200,
+        products: products.sort((a, b) => b.createdAt - a.createdAt)
       });
     })
     .catch((err) => console.log(err));

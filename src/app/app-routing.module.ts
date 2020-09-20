@@ -20,7 +20,7 @@ const routes: Routes = [
     pathMatch: 'full',
   },
   {
-    path: 'newproduct',
+    path: 'new-product',
     loadChildren: () => import('./newproduct/newproduct.module').then( m => m.NewproductPageModule)
   }
 ];
