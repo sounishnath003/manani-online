@@ -16,15 +16,15 @@ router.get("/", (req, res) => {
 });
 
 // post a new product
-router.get("/add-product", (req, res) => {
+router.post("/add-product", (req, res) => {
   const data = {
-    name: "Leelen Saree",
-    custName: "Kalpana Mallick",
-    wholesaler: "Saptaparnee",
-    costprice: 2310,
-    contact: "+91-9475192332",
+    name: "Silk Saree Handoom Craft",
+    custName: "Annesha Harh",
+    wholesaler: "Rangoli",
+    costprice: 4599,
+    contact: "+91-8640750159",
     sellingPrice: 6200,
-    address: "Dumdum, Kolkata",
+    address: "Mumbai, Maharastra",
   };
   let {
     name,
@@ -34,7 +34,8 @@ router.get("/add-product", (req, res) => {
     contact,
     sellingPrice,
     address,
-  } = data;
+    photo
+  } = req.body;
   //   insert into db
   Product.create({
     name,
@@ -44,6 +45,7 @@ router.get("/add-product", (req, res) => {
     contact,
     sellingPrice,
     address,
+    photo
   })
     .then((product) => {
       console.log("product succesfully inserted into db");

@@ -13,5 +13,5 @@ app.use(cors());
 app.use("/products", require("./routes/product"));
 
 app.listen(port, () =>
-  console.log(`listening on http://192.168.0.4:${port}/products`)
+  console.log(`listening on ${port}/products`)
 );

@@ -1,7 +1,7 @@
-import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
-import { environment } from "../../environments/environment";
-import { Observable } from "rxjs";
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../../environments/environment';
+import { Observable } from 'rxjs';
 
 export interface DataServe {
   products: Product[];
@@ -27,6 +27,7 @@ export interface Product {
 }
 
 @Injectable({
+  // tslint:disable-next-line: quotemark
   providedIn: "root",
 })
 export class DataService {
@@ -40,4 +41,10 @@ export class DataService {
   public findProductById(id: number): Observable<FindProduct> {
     return this.http.get<FindProduct>(environment.API_URL + `/find/${id}`);
   }
+
+  public insertNewProduct(productData: Product) {
+    console.log(productData);
+    this.http.post(environment.API_URL + '/add-product', productData);
+  }
+
 }
