@@ -24,30 +24,31 @@ export class HomePage implements OnInit {
   }
 
   refresh(ev) {
-      console.log('Begin async operation');
-      this.reloadPage() ;
-      setTimeout(() => {
+    console.log('Begin async operation');
+    this.reloadPage();
+    setTimeout(() => {
       console.log('Async operation has ended');
       ev.target.complete();
     }, 2000);
   }
 
-
   private reloadPage() {
     setTimeout(() => {
       window.location.reload();
-    }, 100)
+    }, 100);
   }
 
   private getProducts() {
-    this._dataservice.getProducts().subscribe((produtss) => {
-      this.data = produtss;
-      this.products = this.data.products;
-    });
+    setTimeout(() => {
+      this._dataservice.getProducts().subscribe((produtss) => {
+        this.data = produtss;
+        this.products = this.data.products;
+      });
+    }, 2200);
   }
 
   public goNewProduct() {
-      this.router.navigateByUrl('/new-product') ;
+    this.router.navigateByUrl('/new-product');
   }
 
 }

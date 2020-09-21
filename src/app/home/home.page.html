@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title>Manani Online Tracker</ion-title>
+    <ion-title class="ng-thfk">Manani Online Tracker</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -25,21 +25,26 @@
     </ion-toolbar>
   </ion-header>
 
-  <ion-list>
-    <app-message
-      *ngFor="let product of products | filter: term"
-      [product]="product"
-    ></app-message>
-  </ion-list>
-
-  <ion-fab
-    (click)="goNewProduct()"
-    vertical="bottom"
-    horizontal="end"
-    slot="fixed"
-  >
-    <ion-fab-button>
-      <ion-icon name="add"></ion-icon>
-    </ion-fab-button>
-  </ion-fab>
+  <ng-container *ngIf="products; else noDataFound">
+    <ion-list>
+      <app-message
+        *ngFor="let product of products | filter: term"
+        [product]="product"
+      ></app-message>
+    </ion-list>
+    <ion-fab
+      (click)="goNewProduct()"
+      vertical="bottom"
+      horizontal="end"
+      slot="fixed"
+    >
+      <ion-fab-button>
+        <ion-icon name="add"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+  </ng-container>
+  <ng-template #noDataFound>
+    <ion-progress-bar type="indeterminate"></ion-progress-bar>
+    <app-no-data-found></app-no-data-found>
+  </ng-template>
 </ion-content>

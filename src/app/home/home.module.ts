@@ -9,6 +9,7 @@ import { MessageComponentModule } from '../message/message.module';
 import { DataService } from '../services/data.service';
 import { HttpClientModule } from '@angular/common/http';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { NoDataFoundComponent } from './no-data-found/no-data-found.component';
 
 @NgModule({
   imports: [
@@ -21,6 +22,6 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     Ng2SearchPipeModule
   ],
   providers: [DataService],
-  declarations: [HomePage],
+  declarations: [HomePage, NoDataFoundComponent ],
 })
 export class HomePageModule {}
