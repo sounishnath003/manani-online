@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastController } from '@ionic/angular';
 import { DataService, Product } from '../services/data.service';
 
 @Component({
@@ -20,13 +21,31 @@ export class NewproductPage implements OnInit {
     photo: new FormControl(''),
   });
 
-  constructor(private router: Router, private dataService: DataService) {}
+  constructor(
+    private router: Router,
+    private dataService: DataService,
+    public toastController: ToastController
+  ) {}
 
   ngOnInit() {}
   public gotoSubmit() {
-    const productData: Product = this.productform.value;
-    this.dataService.insertNewProduct(productData);
-    this.productform.reset();
+    if (this.productform.valid) {
+      console.log(this.productform.value);
+      const productData: Product = this.productform.value;
+      this.dataService.insertNewProduct(productData);
+      this.productform.reset();
+      this.router.navigateByUrl('/');
+      this.presentToast();
+    } else {
+    }
+  }
+
+  private async presentToast() {
+    const toast = await this.toastController.create({
+      message: 'New product succesfully added.',
+      duration: 2000,
+    });
+    toast.present();
     this.router.navigateByUrl('/');
   }
 }

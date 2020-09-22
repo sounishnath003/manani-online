@@ -42,9 +42,9 @@ export class DataService {
   }
 
   public insertNewProduct(productData: Product) {
-    console.log(environment.API_URL + `/add-product/${productData}`);
+    console.log(environment.API_URL + `/add-product`);
     this.http
-      .get(environment.API_URL + `/add-product/${productData}`)
+      .post(environment.API_URL + `/add-product`, productData)
       .subscribe((res) => console.log(res));
     this.reloadPage();
   }
