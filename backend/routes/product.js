@@ -16,7 +16,7 @@ router.get("/", (req, res) => {
 });
 
 // post a new product
-router.get("/add-product", (req, res, next) => {
+router.post("/add-product", (req, res, next) => {
   const data = {
     name: req.params.name,
     custName: req.params.custName,
@@ -51,8 +51,8 @@ router.get("/add-product", (req, res, next) => {
     .then((product) => {
       console.log("product succesfully inserted into db");
       console.log(product);
-      next();
       res.redirect("/products");
+      next();
     })
     .catch((err) => console.error("Product not inserted: " + err));
 });
