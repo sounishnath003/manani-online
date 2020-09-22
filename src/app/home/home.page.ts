@@ -44,7 +44,7 @@ export class HomePage implements OnInit {
         this.data = produtss;
         this.products = this.data.products;
       });
-    }, 2200);
+    }, 800);
   }
 
   public goNewProduct() {
