@@ -7,16 +7,20 @@ import { IonicModule } from '@ionic/angular';
 import { NewproductPageRoutingModule } from './newproduct-routing.module';
 
 import { NewproductPage } from './newproduct.page';
+import { DataService } from '../services/data.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   imports: [
+    ReactiveFormsModule,
     CommonModule,
     FormsModule,
     IonicModule,
     ReactiveFormsModule,
-    NewproductPageRoutingModule
+    NewproductPageRoutingModule,
+    HttpClientModule
   ],
-  providers: [  ],
+  providers: [ DataService ],
   declarations: [NewproductPage]
 })
 export class NewproductPageModule {}

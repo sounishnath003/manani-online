@@ -9,52 +9,26 @@ router.get("/", (req, res) => {
     .then((products) => {
       console.log(products);
       res.send({
-        products: products.sort((a, b) => b.createdAt - a.createdAt)
+        products: products.sort((a, b) => b.createdAt - a.createdAt),
       });
     })
     .catch((err) => console.log(err));
 });
 
 // post a new product
-router.get("/add-product", (req, res) => {
-  const data = {
-    name: "Leelen Saree",
-    custName: "Kalpana Mallick",
-    wholesaler: "Saptaparnee",
-    costprice: 2310,
-    contact: "+91-9475192332",
-    sellingPrice: 6200,
-    address: "Dumdum, Kolkata",
-  };
-  let {
-    name,
-    custName,
-    wholesaler,
-    costprice,
-    contact,
-    sellingPrice,
-    address,
-  } = data;
-  //   insert into db
-  Product.create({
-    name,
-    custName,
-    wholesaler,
-    costprice,
-    contact,
-    sellingPrice,
-    address,
-  })
+router.post("/add-product", (req, res, next) => {
+  Product.create(req.body)
     .then((product) => {
       console.log("product succesfully inserted into db");
       console.log(product);
       res.redirect("/products");
+      next();
     })
     .catch((err) => console.error("Product not inserted: " + err));
 });
 
 // get the specific product
-router.get("/find/:id", (req, res) => {
+router.get("/find/:id", (req, res, next) => {
   Product.findByPk(req.params.id)
     .then((product) => {
       console.log(product);
@@ -63,6 +37,7 @@ router.get("/find/:id", (req, res) => {
         product: product,
         status: 200,
       });
+      next();
     })
     .catch((err) => {
       console.log("product not found in db: " + err);

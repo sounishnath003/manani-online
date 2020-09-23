@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { DataService, Product } from '../services/data.service';
 
@@ -11,7 +11,7 @@ export interface DataServe {
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage {
+export class HomePage implements OnInit {
   data: DataServe = null;
   products: Product[];
   // tslint:disable-next-line: variable-name
@@ -19,23 +19,36 @@ export class HomePage {
     this.getProducts();
   }
 
+  ngOnInit(): void {
+    // this.reloadPage() ;
+  }
+
   refresh(ev) {
-      console.log('Begin async operation');
-      setTimeout(() => {
+    console.log('Begin async operation');
+    this.reloadPage();
+    setTimeout(() => {
       console.log('Async operation has ended');
       ev.target.complete();
     }, 2000);
   }
 
+  private reloadPage() {
+    setTimeout(() => {
+      window.location.reload();
+    }, 100);
+  }
+
   private getProducts() {
-    this._dataservice.getProducts().subscribe((produtss) => {
-      this.data = produtss;
-      this.products = this.data.products;
-    });
+    setTimeout(() => {
+      this._dataservice.getProducts().subscribe((produtss) => {
+        this.data = produtss;
+        this.products = this.data.products;
+      });
+    }, 800);
   }
 
   public goNewProduct() {
-      this.router.navigateByUrl('/new-product') ;
+    this.router.navigateByUrl('/new-product');
   }
 
 }
