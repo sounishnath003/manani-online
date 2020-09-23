@@ -46,9 +46,7 @@ export class ViewMessagePage implements OnInit {
   }
 
   public constructImageFromBlob(baseImage: any) {
-    const arrayBuffr = new Uint8Array(baseImage.data) ;
-    // tslint:disable-next-line: variable-name;
-    return `data:image/jpg;base64, ${arrayBuffr}`;
+    return `${baseImage}`;
   }
 
 }

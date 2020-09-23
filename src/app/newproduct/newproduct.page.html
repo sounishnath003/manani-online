@@ -30,7 +30,7 @@
     </ion-item>
     <ion-item>
       <ion-label position="floating">Wholeseller</ion-label>
-      <ion-input formControlName="wholesalar" enterkeyhint="next"></ion-input>
+      <ion-input formControlName="wholesaler" enterkeyhint="next"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label position="floating">Cost Price</ion-label>
@@ -70,16 +70,17 @@
     </ion-item>
     <ion-item>
       <ion-label position="floating">Image</ion-label>
-      <ion-input
-        type="file"
-        formControlName="photo"
-        enterkeyhint="done"
-      ></ion-input>
+      <ion-input (change)="fileupload($event)" type="file" enterkeyhint="done">
+      </ion-input>
     </ion-item>
   </ion-list>
 
   <div style="margin: 8px">
-    <ion-button expand="block" (click)="gotoSubmit()">
+    <ion-button
+      [disabled]="!productform.valid"
+      expand="block"
+      (click)="gotoSubmit()"
+    >
       <ion-icon name="checkmark-done-outline"></ion-icon> Submit</ion-button
     >
   </div>

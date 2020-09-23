@@ -6,7 +6,7 @@ const Product = db.sequelize.define("product", {
     type: Sequelize.STRING,
   },
   photo: {
-    type: Sequelize.BLOB,
+    type: Sequelize.STRING,
   },
   custName: {
     type: Sequelize.STRING,

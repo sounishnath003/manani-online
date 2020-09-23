@@ -10,8 +10,8 @@ db.setupDB();
 
 // cors eneable
 app.use(cors());
-app.use(parser) ;
-app.use(bodyParser.json());
+app.use(parser.parsee());
+app.use(parser.jsonParse());
 app.use(bodyParser.raw());
 
 // Product Routes

@@ -57,6 +57,6 @@ export class DataService {
   private reloadPage() {
     setTimeout(() => {
       window.location.reload();
-    }, 600);
+    }, 200);
   }
 }
