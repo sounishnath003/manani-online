@@ -13,7 +13,7 @@ export class NewproductPage implements OnInit {
   public productform: FormGroup = new FormGroup({
     name: new FormControl('', Validators.required),
     custName: new FormControl('', { validators: Validators.required }),
-    wholeselar: new FormControl('', { validators: Validators.required }),
+    wholesalar: new FormControl('', { validators: Validators.required }),
     contact: new FormControl('', { validators: Validators.required }),
     costprice: new FormControl('', { validators: Validators.required }),
     sellingPrice: new FormControl('', { validators: Validators.required }),

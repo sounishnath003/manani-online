@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DataService, FindProduct, Product } from '../services/data.service';
 import { ToastController } from '@ionic/angular';
+import { encode } from 'punycode';
 
 @Component({
   selector: 'app-view-message',
@@ -43,4 +44,11 @@ export class ViewMessagePage implements OnInit {
     toast.present();
     this.router.navigateByUrl('/');
   }
+
+  public constructImageFromBlob(baseImage: any) {
+    const arrayBuffr = new Uint8Array(baseImage.data) ;
+    // tslint:disable-next-line: variable-name;
+    return `data:image/jpg;base64, ${arrayBuffr}`;
+  }
+
 }
