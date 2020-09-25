@@ -42,16 +42,15 @@ export class DataService {
   }
 
   public insertNewProduct(productData: Product) {
-    console.log(environment.API_URL + `/add-product`);
     this.http
       .post(environment.API_URL + `/add-product`, productData)
       .subscribe((res) => console.log(res));
-    this.reloadPage();
+    // this.reloadPage();
   }
 
   public deleteProductById(id: number) {
     this.http.get(environment.API_URL + `/delete/${id}`).subscribe((res) => {});
-    this.reloadPage();
+    // this.reloadPage();
   }
 
   private reloadPage() {
