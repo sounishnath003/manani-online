@@ -15,6 +15,6 @@ app.use(parser.jsonParse());
 app.use(bodyParser.raw());
 
 // Product Routes
-app.use("/products", require("./routes/product"));
+app.use("/api/v1/products", require("./routes/product"));
 
 app.listen(port, () => console.log(`listening on ${port}/products`));
