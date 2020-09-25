@@ -5,9 +5,9 @@ import { ToastController } from '@ionic/angular';
 import { encode } from 'punycode';
 
 @Component({
-  selector: 'app-view-message',
-  templateUrl: './view-message.page.html',
-  styleUrls: ['./view-message.page.scss'],
+  selector: "app-view-message",
+  templateUrl: "./view-message.page.html",
+  styleUrls: ["./view-message.page.scss"],
 })
 export class ViewMessagePage implements OnInit {
   tdata: FindProduct;
@@ -22,7 +22,7 @@ export class ViewMessagePage implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.id = parseInt(this.activatedRoute.snapshot.paramMap.get('id'), 10);
+    this.id = parseInt(this.activatedRoute.snapshot.paramMap.get("id"), 10);
     this.data.findProductById(this.id).subscribe((res) => {
       this.tdata = res;
       this.product = this.tdata.product;
@@ -32,21 +32,26 @@ export class ViewMessagePage implements OnInit {
   getBackButtonText() {
     const win = window as any;
     const mode = win && win.Ionic && win.Ionic.mode;
-    return mode === 'ios' ? 'Back' : ' ';
+    return mode === "ios" ? "Back" : " ";
   }
 
   public async presentToast() {
     const toast = await this.toastController.create({
-      message: 'You\'ve succesfully deleted.',
+      message: "You've succesfully deleted.",
       duration: 2000,
     });
     this.data.deleteProductById(this.product.id);
     toast.present();
-    this.router.navigateByUrl('/');
+    this.router.navigateByUrl("/");
+    this.reloadPage();
+  }
+  private reloadPage() {
+    setTimeout(() => {
+      window.location.reload();
+    }, 200);
   }
 
   public constructImageFromBlob(baseImage: any) {
     return `${baseImage}`;
   }
-
 }

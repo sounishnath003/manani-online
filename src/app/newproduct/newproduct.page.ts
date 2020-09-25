@@ -37,10 +37,16 @@ export class NewproductPage implements OnInit {
       this.productform.reset();
       this.router.navigateByUrl("/");
       this.presentToast();
-    }
-    else {
+      // this.reloadPage();
+    } else {
       console.log(this.productform.value);
     }
+  }
+
+  private reloadPage() {
+    setTimeout(() => {
+      window.location.reload();
+    }, 200);
   }
 
   public fileupload(event): void {
@@ -49,9 +55,9 @@ export class NewproductPage implements OnInit {
       const reader = new FileReader();
       reader.readAsDataURL(file);
       reader.onload = () => {
-        const imageData = (reader.result).toString()
+        const imageData = reader.result.toString();
         this.productform.patchValue({
-          photo: imageData
+          photo: imageData,
         });
       };
     }
